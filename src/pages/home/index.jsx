@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAll, update } from 'api/BooksAPI';
+
 import BookList from 'components/BooksList';
 import { CATEGORIES_OF_BOOKS } from 'constants/index';
+import { getAll, update } from 'api/BooksAPI';
 
 import './Home.css';
 
@@ -10,26 +11,23 @@ function HomePage() {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
 
-  const getAllBook = async () => {
+  const getALl = async () => {
     const response = await getAll();
+
     setBooks(response);
   };
 
   useEffect(() => {
-    getAllBook();
+    getALl();
   }, []);
 
   const handleBooks = (bookId, shelf) => {
     update(bookId, shelf);
 
     const newShelf = books.map((item) => {
-      const book = { ...item };
+      if (item.id === bookId) item.shelf = shelf;
 
-      if (book.id === bookId) {
-        book.shelf = shelf;
-      }
-
-      return book;
+      return item;
     });
 
     setBooks(newShelf);

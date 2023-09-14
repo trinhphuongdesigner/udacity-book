@@ -14,6 +14,7 @@ function App() {
       element: <SearchPage />,
     },
   ]);
+
   return <RouterProvider router={router} />;
 }
 

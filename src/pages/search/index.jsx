@@ -1,9 +1,9 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAll, search, update } from 'api/BooksAPI';
+
 import BookList from 'components/BooksList';
 import useDebounce from 'utils';
+import { getAll, search, update } from 'api/BooksAPI';
 
 function SearchPage() {
   const [searchInput, setSearchInput] = useState('');
@@ -11,21 +11,19 @@ function SearchPage() {
   const navigate = useNavigate();
 
   const mappingRes = async () => {
-    const questionExist = await getAll();
+    const results = await getAll();
 
     const searchRes = await search(searchInput);
 
     if (!searchRes.error) {
       const addShelf = searchRes.map((item) => {
-        const book = { ...item };
-
-        questionExist.forEach((value) => {
+        results.forEach((value) => {
           if (value.id === item.id) {
-            book.shelf = value.shelf;
+            item.shelf = value.shelf;
           }
         });
 
-        return book;
+        return item;
       });
 
       setSearchResult(addShelf);
@@ -34,17 +32,9 @@ function SearchPage() {
     }
   };
 
-  useDebounce(
-    () => {
-      if (searchInput !== '') mappingRes();
-    },
-    [searchInput],
-    300
-  );
-
-  const redirectToHome = () => {
-    navigate(`/`);
-  };
+  useDebounce(() => {
+    if (searchInput !== '') mappingRes()
+  }, [searchInput], 100);
 
   const handleSearch = (e) => {
     setSearchInput(e.target.value);
@@ -58,7 +48,7 @@ function SearchPage() {
     <>
       <div className="search-books">
         <div className="search-books-bar">
-          <a href="#" className="close-search" onClick={redirectToHome}>
+          <a href="" className="close-search" onClick={() => navigate(`/`)}>
             Close
           </a>
 

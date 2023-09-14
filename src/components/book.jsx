@@ -1,12 +1,10 @@
 import React from 'react';
+
 import Dropdown from 'components/Dropdown';
-import PropTypes from 'prop-types';
 
-function Book(props) {
-  const { id, title, authors, shelf, imageLinks, updateNewShelf } = props;
-
+export default function Book({ id, title, authors, shelf, imageLinks, updateNewShelf }) {
   const onChangeShelf = (e) => {
-    if (updateNewShelf) updateNewShelf(id, e.target.value);
+    updateNewShelf(id, e.target.value);
   };
 
   return (
@@ -26,28 +24,9 @@ function Book(props) {
         </div>
         <div className="book-title">{title}</div>
         <div className="book-authors">
-          {authors.length > 0 && authors.join(',')}
+          {authors?.length > 0 && authors.join(',')}
         </div>
       </div>
     </li>
   );
-}
-
-Book.propTypes = {
-  id: PropTypes.string,
-  title: PropTypes.string,
-  shelf: PropTypes.string,
-  authors: PropTypes.instanceOf(Array),
-  imageLinks: PropTypes.instanceOf(Object),
-  updateNewShelf: PropTypes.func.isRequired,
 };
-
-Book.defaultProps = {
-  id: '',
-  title: '',
-  shelf: '',
-  authors: [],
-  imageLinks: {},
-};
-
-export default Book;

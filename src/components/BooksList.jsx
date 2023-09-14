@@ -1,14 +1,8 @@
 import React from 'react';
+
 import Book from 'components/Book';
-import PropTypes from 'prop-types';
 
-function BookList(props) {
-  const { books, handleBooks } = props;
-
-  const updateNewShelf = (bookId, shelf) => {
-    if (handleBooks) handleBooks(bookId, shelf);
-  };
-
+export default function BookList({ books, handleBooks }) {
   return (
     <div className="bookshelf-books">
       <ol className="books-grid">
@@ -23,7 +17,7 @@ function BookList(props) {
                 authors={book.authors}
                 imageLinks={book.imageLinks}
                 shelf={book.shelf}
-                updateNewShelf={updateNewShelf}
+                updateNewShelf={handleBooks}
               />
             );
           })}
@@ -31,10 +25,3 @@ function BookList(props) {
     </div>
   );
 }
-
-BookList.propTypes = {
-  books: PropTypes.instanceOf(Array).isRequired,
-  handleBooks: PropTypes.func.isRequired,
-};
-
-export default BookList;

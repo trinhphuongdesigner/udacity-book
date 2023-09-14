@@ -2,7 +2,7 @@ export const SHELF = {
   EMPTY: '',
   CURRENTLY_READING: 'currentlyReading',
   WANT_TO_READ: 'wantToRead',
-  READ: 'Read',
+  READ: 'read',
   NONE: 'none',
 };
 

@@ -1,10 +1,8 @@
 import React from 'react';
+
 import { CATEGORIES_OF_BOOKS, SHELF } from 'constants/index';
-import PropTypes from 'prop-types';
 
-function Dropdown(props) {
-  const { shelf, handleChangeShelf } = props;
-
+export default function Dropdown({ shelf, handleChangeShelf }) {
   return (
     <div className="book-shelf-changer">
       <select onChange={handleChangeShelf} defaultValue={shelf || SHELF.NONE}>
@@ -23,14 +21,3 @@ function Dropdown(props) {
     </div>
   );
 }
-
-Dropdown.propTypes = {
-  shelf: PropTypes.string,
-  handleChangeShelf: PropTypes.func.isRequired,
-};
-
-Dropdown.defaultProps = {
-  shelf: 'none',
-};
-
-export default Dropdown;
