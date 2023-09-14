@@ -1,43 +1,36 @@
 import React from 'react';
+import { CATEGORIES_OF_BOOKS } from 'constants/book';
 import PropTypes from 'prop-types';
 
 function Selection(props) {
-  const { value } = props;
-
-  console.log('««««« value »»»»»', value);
+  const { shelf, handleChangeShelf } = props;
 
   return (
     <div className="book-shelf-changer">
-      <select>
-        <option value="none" disabled>
-          Move to...
-        </option>
-        <option
-          selected={value === 'currentlyReading'}
-          value="currentlyReading"
-        >
-          Currently Reading
-        </option>
-        <option selected={value === 'wantToRead'} value="wantToRead">
-          Want to Read
-        </option>
-        <option selected={value === 'read'} value="read">
-          Read
-        </option>
-        <option selected={value === 'none'} value="none">
-          None
-        </option>
+      <select onChange={handleChangeShelf} defaultValue={shelf || 'none'}>
+        {CATEGORIES_OF_BOOKS.map((category) => {
+          return (
+            <option
+              key={category.shelf}
+              value={category.shelf}
+              disabled={category.isDisable}
+            >
+              {category.title}
+            </option>
+          );
+        })}
       </select>
     </div>
   );
 }
 
 Selection.propTypes = {
-  value: PropTypes.string,
+  shelf: PropTypes.string,
+  handleChangeShelf: PropTypes.func.isRequired,
 };
 
 Selection.defaultProps = {
-  value: 'none',
+  shelf: 'none',
 };
 
 export default Selection;

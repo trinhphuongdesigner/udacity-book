@@ -1,8 +1,19 @@
 /* eslint-disable import/prefer-default-export */
-export const BOOKS = [
+
+export const CATEGORIES_OF_BOOKS = [
+  { title: 'Move to...', shelf: '', isDisable: true, isDisplay: false },
   {
-    name: 'To Kill a Mockingbird',
-    authors: 'Harper Lee',
-    cover: `url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")`,
+    title: 'Currently Reading',
+    shelf: 'currentlyReading',
+    isDisable: false,
+    isDisplay: true,
   },
+  {
+    title: 'Want to Read',
+    shelf: 'wantToRead',
+    isDisable: false,
+    isDisplay: true,
+  },
+  { title: 'Read', shelf: 'read', isDisable: false, isDisplay: true },
+  { title: 'None', shelf: 'none', isDisable: false, isDisplay: false },
 ];
