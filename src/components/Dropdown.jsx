@@ -1,13 +1,13 @@
 import React from 'react';
-import { CATEGORIES_OF_BOOKS } from 'constants/book';
+import { CATEGORIES_OF_BOOKS, SHELF } from 'constants/index';
 import PropTypes from 'prop-types';
 
-function Selection(props) {
+function Dropdown(props) {
   const { shelf, handleChangeShelf } = props;
 
   return (
     <div className="book-shelf-changer">
-      <select onChange={handleChangeShelf} defaultValue={shelf || 'none'}>
+      <select onChange={handleChangeShelf} defaultValue={shelf || SHELF.NONE}>
         {CATEGORIES_OF_BOOKS.map((category) => {
           return (
             <option
@@ -24,13 +24,13 @@ function Selection(props) {
   );
 }
 
-Selection.propTypes = {
+Dropdown.propTypes = {
   shelf: PropTypes.string,
   handleChangeShelf: PropTypes.func.isRequired,
 };
 
-Selection.defaultProps = {
+Dropdown.defaultProps = {
   shelf: 'none',
 };
 
-export default Selection;
+export default Dropdown;

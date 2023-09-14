@@ -1,5 +1,5 @@
 import React from 'react';
-import Selection from 'components/Selection';
+import Dropdown from 'components/Dropdown';
 import PropTypes from 'prop-types';
 
 function Book(props) {
@@ -22,11 +22,11 @@ function Book(props) {
             }}
           />
 
-          <Selection handleChangeShelf={onChangeShelf} shelf={shelf} />
+          <Dropdown handleChangeShelf={onChangeShelf} shelf={shelf} />
         </div>
         <div className="book-title">{title}</div>
         <div className="book-authors">
-          {authors.length > 0 && authors.join(', ')}
+          {authors.length > 0 && authors.join(',')}
         </div>
       </div>
     </li>
